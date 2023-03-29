@@ -1,0 +1,9 @@
+{
+  "name": "dlopen-benchmark",
+  "version": "1.0.0",
+  "private": true,
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^18.15.11"
+  }
+}

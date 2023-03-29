@@ -1,0 +1,3 @@
+.direnv/
+node_modules/
+libquery_engine.so.node
