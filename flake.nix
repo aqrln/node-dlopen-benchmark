@@ -22,6 +22,7 @@
             python311
             python311Packages.jupyter
             python311Packages.matplotlib
+            python311Packages.numpy
           ];
         };
 
