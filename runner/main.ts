@@ -14,7 +14,7 @@ if (!process.env.ENGINE_SO) {
   throw new Error("$ENGINE_SO missing");
 }
 
-const benchDir = path.join(__dirname, "..", "compared");
+const benchDir = path.join(__dirname, "..", "benches");
 const resultsDir = path.join(__dirname, "..", "results", process.env.PLATFORM);
 
 fs.mkdirSync(resultsDir, { recursive: true });
