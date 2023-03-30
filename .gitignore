@@ -1,3 +1,4 @@
 .direnv/
+.ipynb_checkpoints/
 node_modules/
 libquery_engine.so.node

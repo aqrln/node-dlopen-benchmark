@@ -18,6 +18,10 @@
             nodejs.pkgs.prettier
             nodejs.pkgs.typescript-language-server
             nodejs.pkgs.vscode-langservers-extracted
+
+            python311
+            python311Packages.jupyter
+            python311Packages.matplotlib
           ];
         };
 
