@@ -1,0 +1,13 @@
+FROM amazonlinux:2
+
+ENV ENGINE_SO=/engines/libquery_engine.so.node
+ENV PLATFORM=rhel-openssl-1.0.x
+
+RUN curl -sL https://rpm.nodesource.com/setup_16.x | bash -
+RUN yum -y install nodejs gzip
+
+RUN mkdir /engines
+COPY dl.sh /engines/dl.sh
+RUN cd /engines && ./dl.sh $PLATFORM
+
+RUN npm config set update-notifier false
