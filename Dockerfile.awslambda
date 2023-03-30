@@ -1,13 +1,14 @@
-FROM amazonlinux:2
+FROM public.ecr.aws/lambda/nodejs:18
 
 ENV ENGINE_SO=/engines/libquery_engine.so.node
-ENV PLATFORM=rhel-openssl-1.0.x-node16
+ENV PLATFORM=rhel-openssl-1.0.x-node18-lambda
 
-RUN curl -sL https://rpm.nodesource.com/setup_16.x | bash -
-RUN yum -y install nodejs gzip
+RUN yum install -y gzip
 
 RUN mkdir /engines
 COPY dl.sh /engines/dl.sh
 RUN cd /engines && ./dl.sh rhel-openssl-1.0.x
 
 RUN npm config set update-notifier false
+
+ENTRYPOINT ["/usr/bin/env", "--"]

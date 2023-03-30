@@ -1,7 +1,8 @@
 .PHONY: all run-bench \
 	debian-image bench-debian \
 	fedora-image bench-fedora \
-	amazonlinux-image bench-amazonlinux
+	amazonlinux-image bench-amazonlinux \
+	awslambda-image bench-awslambda
 
 all: node_modules bench-debian bench-fedora bench-amazonlinux
 
@@ -28,3 +29,9 @@ amazonlinux-image:
 
 bench-amazonlinux: amazonlinux-image
 	$(MAKE) run-bench IMAGE=dlbench-amazonlinux
+
+awslambda-image:
+	docker build -t dlbench-awslambda -f Dockerfile.awslambda .
+
+bench-awslambda: awslambda-image
+	$(MAKE) run-bench IMAGE=dlbench-awslambda
