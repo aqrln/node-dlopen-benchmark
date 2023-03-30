@@ -1,0 +1,12 @@
+FROM fedora:37
+
+ENV ENGINE_SO=/engines/libquery_engine.so.node
+ENV PLATFORM=rhel-openssl-3.0.x
+
+RUN dnf install -y nodejs nodejs-npm
+
+RUN mkdir /engines
+COPY dl.sh /engines/dl.sh
+RUN cd /engines && ./dl.sh $PLATFORM
+
+RUN npm config set update-notifier false

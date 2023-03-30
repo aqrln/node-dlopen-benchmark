@@ -1,0 +1,10 @@
+FROM node:18-buster
+
+ENV ENGINE_SO=/engines/libquery_engine.so.node
+ENV PLATFORM=debian-openssl-1.1.x
+
+RUN mkdir /engines
+COPY dl.sh /engines/dl.sh
+RUN cd /engines && ./dl.sh $PLATFORM
+
+RUN npm config set update-notifier false
