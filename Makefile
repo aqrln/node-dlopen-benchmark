@@ -1,13 +1,18 @@
-.PHONY: debian-image bench-debian fedora-image bench-fedora
+.PHONY: all run-bench debian-image bench-debian fedora-image bench-fedora
+
+all: bench-debian bench-fedora
+
+run-bench:
+	docker run -v $(shell pwd):/workspace -it -w /workspace $(IMAGE) npm start
 
 debian-image:
 	docker build -t dlbench-debian -f Dockerfile.debian .
 
+bench-debian: debian-image
+	$(MAKE) run-bench IMAGE=dlbench-debian
+
 fedora-image:
 	docker build -t dlbench-fedora -f Dockerfile.fedora .
 
-bench-debian: debian-image
-	docker run -v $(shell pwd):/workspace -it -w /workspace dlbench-debian npm start
-
 bench-fedora: fedora-image
-	docker run -v $(shell pwd):/workspace -it -w /workspace dlbench-fedora npm start
+	$(MAKE) run-bench IMAGE=dlbench-fedora

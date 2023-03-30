@@ -2,7 +2,9 @@ import childProcess from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 
-const NUM_RUNS = Number(process.env.NUM_RUNS || "10000");
+import cliProgress from "cli-progress";
+
+const NUM_RUNS = Number(process.env.NUM_RUNS || "1000");
 
 if (!process.env.PLATFORM) {
   throw new Error("$PLATFORM missing");
@@ -25,12 +27,19 @@ const benchResults = Object.fromEntries(
   benchNames.map((name) => [name, [] as number[]])
 );
 
+const progressBar = new cliProgress.SingleBar({});
+progressBar.start(NUM_RUNS, 0);
+
 for (let i = 0; i < NUM_RUNS; i++) {
   for (const bench of benchNames) {
     const { stdout } = spawnBench(bench);
     benchResults[bench].push(parseFloat(stdout));
   }
+
+  progressBar.increment();
 }
+
+progressBar.stop();
 
 fs.writeFileSync(
   path.join(resultsDir, "results.json"),
