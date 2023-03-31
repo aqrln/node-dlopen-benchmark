@@ -7,11 +7,5 @@ measureAndLog(() => {
   const libraryPath = path.toNamespacedPath(process.env.ENGINE_SO);
   const libraryModule = { exports: {} };
 
-  let flags = 0;
-
-  if (process.platform !== "win32") {
-    flags |= os.constants.dlopen.RTLD_LAZY;
-  }
-
-  process.dlopen(libraryModule, libraryPath, flags);
+  process.dlopen(libraryModule, libraryPath);
 });
