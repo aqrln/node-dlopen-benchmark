@@ -1,4 +1,4 @@
-FROM node:18-buster
+FROM node:18
 
 ENV ENGINE_SO=/engines/libquery_engine.so.node
 ENV PLATFORM=debian-openssl-1.1.x
