@@ -4,7 +4,7 @@ import path from "node:path";
 
 import cliProgress from "cli-progress";
 
-const NUM_RUNS = Number(process.env.NUM_RUNS || "1000");
+const NUM_RUNS = Number(process.env.NUM_RUNS || "10000");
 
 if (!process.env.PLATFORM) {
   throw new Error("$PLATFORM missing");
